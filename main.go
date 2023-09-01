@@ -14,6 +14,13 @@ func main() {
 
 	// Create an HTTP server to listen on the specified port.
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		// Check if the request path is "/health" and do not forward it.
+		if r.URL.Path == "/health" {
+			w.WriteHeader(http.StatusOK)
+			w.Write([]byte("Request to /health is not forwarded"))
+			return
+		}
+
 		// Read the payload from the incoming request.
 		payload, err := ioutil.ReadAll(r.Body)
 		if err != nil {
