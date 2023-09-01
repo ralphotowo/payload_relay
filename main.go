@@ -14,10 +14,10 @@ func main() {
 
 	// Create an HTTP server to listen on the specified port.
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		// Check if the request path is "/health" and do not forward it.
-		if r.URL.Path == "/health" {
+		// Check if the request path is "/healthcheck" and do not forward it.
+		if r.URL.Path == "/healthcheck" {
 			w.WriteHeader(http.StatusOK)
-			w.Write([]byte("Request to /health is not forwarded"))
+			w.Write([]byte("Request to /healthcheck is not forwarded"))
 			return
 		}
 
